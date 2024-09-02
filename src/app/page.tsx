@@ -150,7 +150,7 @@ export default function Home() {
     if (pageIndex !== 0) {
       gotoPage(0);
     }
-  }, [data, gotoPage, pageIndex]);
+  }, [productsItems, gotoPage]);
 
   return (
     <main
