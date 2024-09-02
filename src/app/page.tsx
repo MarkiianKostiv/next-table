@@ -13,12 +13,13 @@ import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined
 import ModeOutlinedIcon from "@mui/icons-material/ModeOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import SwitchLeftIcon from "@mui/icons-material/SwitchLeft";
 
 import { ThemeButton } from "./components/core/ThemeButton";
 import { TablePlaceHolder } from "./components/ui/TablePlaceHolder";
+import Image from "next/image";
 
 import { COLORS_DARK, COLORS_LIGHT } from "./constants/colors";
-import Image from "next/image";
 
 export default function Home() {
   const { theme } = useTheme();
@@ -41,7 +42,12 @@ export default function Home() {
     () => [
       { Header: "Tracking ID", accessor: "trackingId" as const },
       {
-        Header: "Product Name",
+        Header: () => (
+          <div className='flex items-center justify-between'>
+            Product
+            <SwitchLeftIcon className='rotate-90' />
+          </div>
+        ),
         accessor: "productName" as const,
         Cell: ({ row }: { row: { original: IProduct } }) => (
           <div className='flex items-center'>
@@ -56,9 +62,22 @@ export default function Home() {
           </div>
         ),
       },
-      { Header: "Customer", accessor: "customer" as const },
       {
-        Header: "Date",
+        Header: () => (
+          <div className='flex items-center justify-between'>
+            Customer
+            <SwitchLeftIcon className='rotate-90' />
+          </div>
+        ),
+        accessor: "customer" as const,
+      },
+      {
+        Header: () => (
+          <div className='flex items-center justify-between'>
+            Date
+            <SwitchLeftIcon className='rotate-90' />
+          </div>
+        ),
         accessor: "date" as const,
         Cell: ({ value }: { value: Date }) => value.toLocaleDateString(),
       },
@@ -69,7 +88,12 @@ export default function Home() {
       },
       { Header: "Payment Mode", accessor: "paymentMode" as const },
       {
-        Header: "Status",
+        Header: () => (
+          <div className='flex items-center justify-between'>
+            Status
+            <SwitchLeftIcon className='rotate-90' />
+          </div>
+        ),
         accessor: "status" as const,
         Cell: ({ value }: { value: string }) => {
           let statusClass = "";
